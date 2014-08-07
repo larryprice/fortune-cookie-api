@@ -1,0 +1,99 @@
+FORMAT: 1A
+HOST: http://www.google.com
+
+# Fortune Cookie API
+Fortune Cookie API retrieves data to create a fortune cookie - fortunes, lotto numbers, and a very brief lesson in Chinese.
+
+# Group Notes
+Notes related resources of the **Fortune Cookie API**
+
+## Fortunes Collection [/fortunes]
+### List all Fortunes [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "message": "This fortune intentionally left blank"
+        }, {
+          "id": 2, "message": "Tomorrow is a latter-day"
+        }]
+
+## Fortune [/fortunes/{id}]
+A single Fortune object with all its details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Fortune to perform action with. Has example value.
+
+### Retrieve a Note [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            { "id": 1, "message": "This fortune intentionally left blank" }
+
+## Lottos Collection [/lottos]
+### List all Lottos [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "numbers": "10 20 30 40 50 6"
+        }, {
+          "id": 2, "numbers": "15 24 88 9 10 78"
+        }]
+
+## Lotto [/lottos/{id}]
+A single Lotto object with all its details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Lotto to perform action with. Has example value.
+
+### Retrieve a Lotto [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            { "id": 1, "numbers": "10 20 30 40 50 6" }
+
+## Lessons Collection [/lessons]
+### List all Lessons [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "chinese": "因特网", "romanization": "yintewang", "english": "internet"
+        }, {
+          "id": 2, "chinese": "狮子狗", "romanization": "shizi gou", "english": "poodle"
+        }]
+
+## Lesson [/lessons/{id}]
+A single Lesson object with all its details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Lesson to perform action with. Has example value.
+
+### Retrieve a Lesson [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            { "id": 1, "chinese": "因特网", "romanization": "yintewang", "english": "internet" }
+
+## Cookie [/cookie{?fortuneId,lottoId,lessonId}]
+### Returns a whole cookie, which includes a fortune, lotto, and lesson [GET]
+
++ Parameters
+    + fortuneId (string,optional) ... ID of the Fortune to build the cookie (random if not specified).
+    + lottoId (string,optional) ... ID of the Lotto to build the cookie (random if not specified).
+    + lessonId (string,optional) ... ID of the Lesson to build the cookie (random if not specified).
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "fortune":
+                    { "id": 1, "message": "This fortune intentionally left blank" },
+                "lotto":
+                    { "id": 1, "numbers": "10 20 30 40 50 6" },
+                "lesson":
+                    { "id": 1, "chinese": "因特网", "romanization": "yintewang", "english": "internet" }
+            }
+        
