@@ -5,15 +5,15 @@ var lottos = require('./routes/lottos');
 
 var app = express();
 
-app.get('/fortunes', fortunes.findAll);
-app.get('/fortunes/:id', fortunes.findById);
-app.get('/lottos', lottos.findAll);
-app.get('/lottos/:id', lottos.findById);
+app.get('/v1/fortunes', fortunes.findAll);
+app.get('/v1/fortunes/:id', fortunes.findById);
+app.get('/v1/lottos', lottos.findAll);
+app.get('/v1/lottos/:id', lottos.findById);
 // app.get('/lessons', lessons.findAll);
 // app.get('/lessons/:id', lessons.findById);
 // app.get('/cookie', cookie.build);
 
 var port = Number(process.env.PORT || 5000);
-app.listen(port, function() {
+app.listen(port, function () {
   console.log("Listening on " + port);
 });
