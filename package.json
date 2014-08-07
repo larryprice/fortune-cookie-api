@@ -1,0 +1,26 @@
+{
+  "name": "fortune-cookie-api",
+  "version": "0.0.0",
+  "description": "",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/larryprice/fortune-cookie-api.git"
+  },
+  "keywords": [
+    "fortune",
+    "cookie"
+  ],
+  "author": "Larry Price <larry.price.dev@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/larryprice/fortune-cookie-api/issues"
+  },
+  "homepage": "https://github.com/larryprice/fortune-cookie-api",
+  "dependencies": {
+    "express": "^4.8.1"
+  }
+}
