@@ -35,9 +35,9 @@ A single Fortune object with all its details
 + Response 200 (application/json)
 
         [{
-          "id": 1, "numbers": "10 20 30 40 50 6"
+          "id": 1, "numbers": [10,20,30,40,50,6]
         }, {
-          "id": 2, "numbers": "15 24 88 9 10 78"
+          "id": 2, "numbers": [15,24,11,9,10,55]
         }]
 
 ## Lotto [/lottos/{id}]
@@ -51,7 +51,7 @@ A single Lotto object with all its details
 
     + Body
 
-            { "id": 1, "numbers": "10 20 30 40 50 6" }
+            { "id": 1, "numbers": [10,20,30,40,50,6] }
 
 ## Lessons Collection [/lessons]
 ### List all Lessons [GET]
@@ -92,7 +92,7 @@ A single Lesson object with all its details
                 "fortune":
                     { "id": 1, "message": "This fortune intentionally left blank" },
                 "lotto":
-                    { "id": 1, "numbers": "10 20 30 40 50 6" },
+                    { "id": 1, "numbers": [10,20,30,40,50,6] },
                 "lesson":
                     { "id": 1, "chinese": "因特网", "romanization": "yintewang", "english": "internet" }
             }
