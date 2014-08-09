@@ -2,13 +2,18 @@ FORMAT: 1A
 HOST: http://fortunecookieapi.herokuapp.com
 
 # Fortune Cookie API
-Fortune Cookie API retrieves data to create a fortune cookie - fortunes, lotto numbers, and a very brief lesson in Chinese.
+Fortune Cookie API retrieves data to create a fortune cookie - fortunes, lotto numbers, and a brief lesson in Simplified Chinese.
 
 # Group Notes
 Notes related resources of the **Fortune Cookie API**
 
-## Fortunes Collection [/v1/fortunes]
+## Fortunes Collection [/v1/fortunes{?limit,page}]
 ### List all Fortunes [GET]
+
++ Parameters
+    + limit (integer,optional) ... Quantity of fortunes to return, default 100, max 1000
+    + page (integer,optional) ... Page number taking into account given limit, default 1
+    
 + Response 200 (application/json)
 
         [{
@@ -30,8 +35,13 @@ A single Fortune object with all its details
 
             { "id": 1, "message": "This fortune intentionally left blank" }
 
-## Lottos Collection [/v1/lottos]
+## Lottos Collection [/v1/lottos{?limit,page}]
 ### List all Lottos [GET]
+
++ Parameters
+    + limit (integer,optional) ... Quantity of lotto numbers to return, default 100, max 1000
+    + page (integer,optional) ... Page number taking into account given limit, default 1
+
 + Response 200 (application/json)
 
         [{
@@ -53,8 +63,13 @@ A single Lotto object with all its details
 
             { "id": 1, "numbers": [10,20,30,40,50,6] }
 
-## Lessons Collection [/v1/lessons]
+## Lessons Collection [/v1/lessons{?limit,page}]
 ### List all Lessons [GET]
+
++ Parameters
+    + limit (integer,optional) ... Quantity of lessons to return, default 100, max 1000
+    + page (integer,optional) ... Page number taking into account given limit, default 1
+    
 + Response 200 (application/json)
 
         [{
