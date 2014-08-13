@@ -1,7 +1,7 @@
 var express = require('express');
 var routes = require('./lib/routes');
 
-var app = express();
+var app = exports.app = express();
 
 routes.setup(app);
 
