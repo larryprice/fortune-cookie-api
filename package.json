@@ -1,7 +1,7 @@
 {
   "name": "fortune-cookie-api",
   "version": "0.0.0",
-  "description": "",
+  "description": "Fortune Cookie API retrieves data to create a fortune cookie - fortunes, lotto numbers, and a brief lesson in Simplified Chinese.",
   "engines": {
     "node": "0.11.13"
   },
@@ -25,5 +25,10 @@
   "homepage": "https://github.com/larryprice/fortune-cookie-api",
   "dependencies": {
     "express": "^4.8.1"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.21.4",
+    "supertest": "^0.13.0"
   }
 }

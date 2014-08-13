@@ -1,0 +1,7 @@
+Fortune Cookie API
+
+Fortune Cookie API retrieves data to create a fortune cookie - fortunes, lotto numbers, and a brief lesson in Simplified Chinese.
+
+API Documentation: http://docs.fortunecookie.apiary.io/
+
+API: http://fortunecookieapi.herokuapp.com/
