@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/larryprice/fortune-cookie-api",
   "dependencies": {
-    "express": "^4.8.1"
+    "express": "^4.8.1",
+    "mongoose": "^3.8.15"
   },
   "devDependencies": {
     "chai": "^1.9.1",
