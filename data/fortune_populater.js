@@ -6,29 +6,33 @@ mongoose.connect(config.db['test']);
 
 var Fortune = require('../lib/models/fortune').model();
 
-var c = 0;
-var f = Fortune.find({}, function(e, u) {
-  console.log(u);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback() {
+  repopulate();
 });
 
-mongoose.disconnect();
+function repopulate() {
+  Fortune.find({}, function(e, u) {
+    for (var i = 0; i < u.length; ++i) {
+      u[i].remove();
+    }
+    populate();
+  });
+}
 
-// fs.readFile('./proverbs.txt', 'utf8', function(err, data) {
-//   if (!err) {
-//     var lines = data.split("\n");
-//     for (var i = 0; i < lines.length; ++i) {
-//       new Fortune({
-//         message: lines[i]
-//       }).save();
-//     }
-//   } else {
-//     console.log(err);
-//   }
-// });
-
-// Fortune.find({}, function(err, user) {
-//   console.log(user);
-// });
-
-// for each fortune in proverbs
-// db.create fortune
+function populate() {
+  fs.readFile(__dirname + '/proverbs.txt', 'utf8', function(err, data) {
+    if (!err) {
+      var lines = data.split("\n");
+      for (var i = 0; i < lines.length; ++i) {
+        Fortune.create({
+          message: lines[i]
+        });
+      }
+    } else {
+      console.log(err);
+    }
+    mongoose.disconnect();
+  });
+}
