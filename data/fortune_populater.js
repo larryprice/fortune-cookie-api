@@ -2,7 +2,7 @@ var fs = require('fs'),
   mongoose = require('mongoose'),
   config = require('../lib/config');
 
-mongoose.connect(config.db['test']);
+mongoose.connect(config.db['development']);
 
 var Fortune = require('../lib/models/fortune').model();
 
@@ -13,26 +13,34 @@ db.once('open', function callback() {
 });
 
 function repopulate() {
-  Fortune.find({}, function(e, u) {
-    for (var i = 0; i < u.length; ++i) {
-      u[i].remove();
+  Fortune.find({}, function (e, u) {
+    if (e) {
+      console.error(e);
+    } else {
+      for (var i = 0; i < u.length; ++i) {
+        u[i].remove();
+      }
+      populate();
     }
-    populate();
   });
 }
 
 function populate() {
-  fs.readFile(__dirname + '/proverbs.txt', 'utf8', function(err, data) {
+  fs.readFile(__dirname + '/proverbs.txt', 'utf8', function (err, data) {
     if (!err) {
-      var lines = data.split("\n");
+      var lines = data.split("\n"),
+        fortuneCount = 0;
       for (var i = 0; i < lines.length; ++i) {
         Fortune.create({
           message: lines[i]
+        }, function (e, f) {
+          if (++fortuneCount === lines.length) {
+            mongoose.disconnect();
+          }
         });
       }
     } else {
-      console.log(err);
+      console.error(err);
     }
-    mongoose.disconnect();
   });
 }
