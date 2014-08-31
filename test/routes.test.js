@@ -49,13 +49,13 @@ describe("fortune cookie api", function() {
 
     it("gets requested fortune", function(done) {
       request(app)
-        .get("/v1/fortunes/1")
+        .get("/v1/fortunes/53ffcf1d4ea4f76d1b8f223f")
         .expect(200)
         .end(function(err, res) {
           should.not.exist(err);
           res.body.should.deep.equal({
-            message: 'This fortune intentionally left blank',
-            id: '1'
+            message: 'Fortune 2',
+            id: '53ffcf1d4ea4f76d1b8f223f'
           });
           done();
         });
@@ -135,15 +135,15 @@ describe("fortune cookie api", function() {
 
     it("gets requested lesson", function(done) {
       request(app)
-        .get("/v1/lessons/1")
+        .get("/v1/lessons/53ffcf1d4ea4f76d1b8f223f")
         .expect(200)
         .end(function(err, res) {
           should.not.exist(err);
           res.body.should.deep.equal({
-            "chinese": "因特网",
-            "romanization": "yintewang",
-            "english": "internet",
-            id: '1'
+            id: '53ffcf1d4ea4f76d1b8f223f',
+            chinese: "狮子狗",
+            pronunciation: "shizi gou",
+            english: "poodle"
           });
           done();
         });
