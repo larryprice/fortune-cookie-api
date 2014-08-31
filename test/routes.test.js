@@ -5,7 +5,8 @@ var should = require('chai').should(),
 
 mockgoose(mongoose);
 var app = require('../web').app,
-  Fortune = mongoose.model('Fortune');
+  Fortune = mongoose.model('Fortune'),
+  Lesson = mongoose.model('Lesson');
 
 describe("fortune cookie api", function() {
   beforeEach(function() {
@@ -98,6 +99,19 @@ describe("fortune cookie api", function() {
   });
 
   describe("lessons", function() {
+    beforeEach(function() {
+      Lesson.create({
+        _id: "53ffcf1d4ea4f76d1b8f223e",
+        chinese: "因特网",
+        pronunciation: "yintewang",
+        english: "internet"
+      }, {
+        _id: "53ffcf1d4ea4f76d1b8f223f",
+        chinese: "狮子狗",
+        pronunciation: "shizi gou",
+        english: "poodle"
+      });
+    });
     it("gets all the lessons", function(done) {
       request(app)
         .get("/v1/lessons")
@@ -105,15 +119,15 @@ describe("fortune cookie api", function() {
         .end(function(err, res) {
           should.not.exist(err);
           res.body.should.have.deep.members([{
-            "id": 1,
-            "chinese": "因特网",
-            "romanization": "yintewang",
-            "english": "internet"
+            id: "53ffcf1d4ea4f76d1b8f223e",
+            chinese: "因特网",
+            pronunciation: "yintewang",
+            english: "internet"
           }, {
-            "id": 2,
-            "chinese": "狮子狗",
-            "romanization": "shizi gou",
-            "english": "poodle"
+            id: "53ffcf1d4ea4f76d1b8f223f",
+            chinese: "狮子狗",
+            pronunciation: "shizi gou",
+            english: "poodle"
           }]);
           done();
         });
