@@ -104,6 +104,26 @@ describe("fortune cookie api", function() {
         });
     });
 
+    it("gets all the lottos with specified limit and starting point", function(done) {
+      request(app)
+        .get("/v1/lottos?limit=3&firstId=005900590059005900590058")
+        .expect(200)
+        .end(function(err, res) {
+          should.not.exist(err);
+          res.body.should.have.deep.members([{
+            id: '005900590059005900590058',
+            numbers: [59, 59, 59, 59, 59, 58]
+          }, {
+            id: '005900590059005900590059',
+            numbers: [59, 59, 59, 59, 59, 59]
+          }, {
+            id: '000000000000000000000000',
+            numbers: [0, 0, 0, 0, 0, 0]
+          }]);
+          done();
+        });
+    });
+
     it("gets requested lotto", function(done) {
       request(app)
         .get("/v1/lottos/002500460007001100580026")
