@@ -38,7 +38,8 @@ Excuse me. (begging pardon)
     打扰一下。 
     Dǎrǎo yixià ; 
 Excuse me. (begging pardon)
-    麻烦您了, Máfán nín le. 
+    麻烦您了
+    Máfán nín le. 
 Excuse me. (coming through) 
     对不起 
     Duìbùqǐ
@@ -717,33 +718,33 @@ Toilet
     Smoking 
 吸烟 
 xīyān
-dīng
-    丁 
     cubed/diced
-piàn
-    片 
+    丁 
+dīng
     thinly sliced
-sī
-    丝 
+    片 
+piàn
     shredded
-kuài
-    块 
+    丝 
+sī
     chunk/cut into bite-sized pieces
-qiú
-    球 
+    块 
+kuài
     curled
-chăo
-    炒 
+    球 
+qiú
     stir-fried
-zhá or zhà
-    炸 
+    炒 
+chăo
     deep-fried
-kăo
-    烤 
+    炸 
+zhá or zhà
     dry-roasted
-shāo
-    烧 
+    烤 
+kăo
     roasted w/ sauce
+    烧 
+shāo
 Do you have any rooms available? 
     你们有房间吗？ 
     Nǐmen yǒu fángjiān ma? 

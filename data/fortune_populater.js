@@ -4,7 +4,7 @@ var fs = require('fs'),
 
 mongoose.connect(config.db[process.env.NODE_ENV || 'development']);
 
-var Fortune = require('../lib/models/fortune').model();
+var Fortune = require('../lib/models/fortune');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

@@ -4,7 +4,7 @@ var fs = require('fs'),
 
 mongoose.connect(config.db[process.env.NODE_ENV || 'development']);
 
-var Lesson = require('../lib/models/lesson').model();
+var Lesson = require('../lib/models/lesson');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -30,9 +30,9 @@ function populate() {
     if (!err) {
       var lines = data.split("\n"),
         lessonCount = 0,
-        numLessons = (lines.length - 2) / 3;
+        numLessons = lines.length / 3 - 1;
 
-      if ((lines.length - 2) % 3 !== 0) {
+      if (lines.length % 3 !== 0) {
         console.log("Corrupt file.");
         mongoose.disconnect();
         return;
