@@ -5,7 +5,7 @@ var should = require('chai').should(),
 
 mockgoose(mongoose);
 var app = require('../web').app,
-  Fortune = mongoose.model('Fortune');
+  Fortune = require('../lib/models/fortune');
 
 describe("fortunes", function() {
   before(function() {

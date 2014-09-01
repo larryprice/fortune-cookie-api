@@ -5,10 +5,12 @@ var should = require('chai').should(),
 
 mockgoose(mongoose);
 var app = require('../web').app,
-  Lesson = mongoose.model('Lesson');
+  Lesson = require('../lib/models/lesson');
 
 describe("lessons", function() {
-  beforeEach(function() {
+  before(function() {
+    mockgoose.reset();
+
     Lesson.create({
       _id: "53ffcf1d4ea4f76d1b8f223e",
       chinese: "因特网",
