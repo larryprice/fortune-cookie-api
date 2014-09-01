@@ -2,7 +2,7 @@ var fs = require('fs'),
   mongoose = require('mongoose'),
   config = require('../lib/config');
 
-mongoose.connect(config.db['development']);
+mongoose.connect(config.db[process.env.NODE_ENV || 'development']);
 
 var Lesson = require('../lib/models/lesson').model();
 
