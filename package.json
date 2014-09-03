@@ -25,13 +25,13 @@
   "homepage": "https://github.com/larryprice/fortune-cookie-api",
   "dependencies": {
     "express": "^4.8.1",
-    "mongoose": "^3.8.15"
+    "mongoose": "^3.8.15",
+    "mongoose-simple-random": "^0.2.0"
   },
   "devDependencies": {
     "chai": "^1.9.1",
     "mocha": "^1.21.4",
     "mockgoose": "^1.10.2",
-    "mongoose-simple-random": "^0.1.0",
     "supertest": "^0.13.0"
   }
 }
