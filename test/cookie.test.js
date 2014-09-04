@@ -96,4 +96,33 @@ describe("cookie", function () {
         done();
       });
   });
+
+  it("returns a cookie with specified attributes", function (done) {
+    request(app)
+      .get(
+        "/v1/cookie?fortuneId=53ffcf1d4ea4f76d1b8f223f&lessonId=53ffcf1d4ea4f76d1b8f223f&lottoId=002200130056000900370023"
+    )
+      .expect(200)
+      .end(function (err, res) {
+        should.not.exist(err);
+        res.body.should.have.length(1);
+        res.body[0].should.deep.equal({
+          fortune: {
+            id: "53ffcf1d4ea4f76d1b8f223f",
+            message: "Fortune 2"
+          },
+          lesson: {
+            id: "53ffcf1d4ea4f76d1b8f223f",
+            pronunciation: "shizi gou",
+            chinese: "狮子狗",
+            english: "poodle"
+          },
+          lotto: {
+            id: '002200130056000900370023',
+            numbers: [22, 13, 56, 9, 37, 23]
+          }
+        });
+        done();
+      });
+  });
 });
