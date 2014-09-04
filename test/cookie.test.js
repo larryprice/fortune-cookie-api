@@ -8,8 +8,8 @@ var app = require('../web').app,
   Lesson = require('../lib/models/lesson'),
   Fortune = require('../lib/models/fortune');
 
-describe("cookie", function() {
-  before(function() {
+describe("cookie", function () {
+  before(function () {
     mockgoose.reset();
 
     Lesson.create({
@@ -36,16 +36,63 @@ describe("cookie", function() {
     });
   });
 
-  it("returns a random cookie", function(done) {
+  it("returns a random cookie", function (done) {
     request(app)
       .get("/v1/cookie")
       .expect(200)
-      .end(function(err, res) {
+      .end(function (err, res) {
         should.not.exist(err);
         res.body.should.have.length(1);
         res.body[0].should.ownProperty('lesson');
         res.body[0].should.ownProperty('fortune');
         res.body[0].should.ownProperty('lotto');
+        done();
+      });
+  });
+
+  it("returns a cookie with specified fortune", function (done) {
+    request(app)
+      .get("/v1/cookie?fortuneId=53ffcf1d4ea4f76d1b8f223f")
+      .expect(200)
+      .end(function (err, res) {
+        should.not.exist(err);
+        res.body.should.have.length(1);
+        res.body[0].fortune.should.deep.equal({
+          id: "53ffcf1d4ea4f76d1b8f223f",
+          message: "Fortune 2"
+        });
+        done();
+      });
+  });
+
+  it("returns a cookie with specified lesson", function (done) {
+    request(app)
+      .get("/v1/cookie?lessonId=53ffcf1d4ea4f76d1b8f223f")
+      .expect(200)
+      .end(function (err, res) {
+        should.not.exist(err);
+        res.body.should.have.length(1);
+        res.body[0].lesson.should.deep.equal({
+          id: "53ffcf1d4ea4f76d1b8f223f",
+          pronunciation: "shizi gou",
+          chinese: "狮子狗",
+          english: "poodle"
+        });
+        done();
+      });
+  });
+
+  it("returns a cookie with specified lotto", function (done) {
+    request(app)
+      .get("/v1/cookie?lottoId=002200130056000900370023")
+      .expect(200)
+      .end(function (err, res) {
+        should.not.exist(err);
+        res.body.should.have.length(1);
+        res.body[0].lotto.should.deep.equal({
+          id: '002200130056000900370023',
+          numbers: [22, 13, 56, 9, 37, 23]
+        });
         done();
       });
   });
