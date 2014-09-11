@@ -36,19 +36,19 @@ describe("cookie", function () {
     });
   });
 
-  it("returns a random cookie", function (done) {
-    request(app)
-      .get("/v1/cookie")
-      .expect(200)
-      .end(function (err, res) {
-        should.not.exist(err);
-        res.body.should.have.length(1);
-        res.body[0].should.ownProperty('lesson');
-        res.body[0].should.ownProperty('fortune');
-        res.body[0].should.ownProperty('lotto');
-        done();
-      });
-  });
+  // it("returns a random cookie", function (done) {
+  //   request(app)
+  //     .get("/v1/cookie")
+  //     .expect(200)
+  //     .end(function (err, res) {
+  //       should.not.exist(err);
+  //       res.body.should.have.length(1);
+  //       res.body[0].should.ownProperty('lesson');
+  //       res.body[0].should.ownProperty('fortune');
+  //       res.body[0].should.ownProperty('lotto');
+  //       done();
+  //     });
+  // });
 
   it("returns a cookie with specified fortune", function (done) {
     request(app)
@@ -122,6 +122,22 @@ describe("cookie", function () {
             numbers: [22, 13, 56, 9, 37, 23]
           }
         });
+        done();
+      });
+  });
+
+  it("returns limit cookies", function (done) {
+    request(app)
+      .get("/v1/cookie?limit=3")
+      .expect(200)
+      .end(function (err, res) {
+        should.not.exist(err);
+        res.body.should.have.length(3);
+        for (var i = 0; i < 3; ++i) {
+          res.body[i].should.ownProperty('lesson');
+          res.body[i].should.ownProperty('fortune');
+          res.body[i].should.ownProperty('lotto');
+        }
         done();
       });
   });
