@@ -36,19 +36,19 @@ describe("cookie", function () {
     });
   });
 
-  // it("returns a random cookie", function (done) {
-  //   request(app)
-  //     .get("/v1/cookie")
-  //     .expect(200)
-  //     .end(function (err, res) {
-  //       should.not.exist(err);
-  //       res.body.should.have.length(1);
-  //       res.body[0].should.ownProperty('lesson');
-  //       res.body[0].should.ownProperty('fortune');
-  //       res.body[0].should.ownProperty('lotto');
-  //       done();
-  //     });
-  // });
+  it("returns a random cookie", function(done) {
+    request(app)
+      .get("/v1/cookie")
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.body.should.have.length(1);
+        res.body[0].should.ownProperty('lesson');
+        res.body[0].should.ownProperty('fortune');
+        res.body[0].should.ownProperty('lotto');
+        done();
+      });
+  });
 
   it("returns a cookie with specified fortune", function (done) {
     request(app)
