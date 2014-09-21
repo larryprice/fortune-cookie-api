@@ -21,6 +21,16 @@ describe("lessons", function() {
       chinese: "狮子狗",
       pronunciation: "shizi gou",
       english: "poodle"
+    }, {
+      _id: "53ffcf1d4ea4f76d1b8f2240",
+      chinese: "谢谢。",
+      english: "Thank you.",
+      pronunciation: "Xièxiè."
+    }, {
+      _id: "53ffcf1d4ea4f76d1b8f2241",
+      chinese: "住手！小偷！",
+      english: "Stop! Thief!",
+      pronunciation: "zhùshǒu! xiǎotōu!"
     });
   });
 
@@ -31,15 +41,25 @@ describe("lessons", function() {
       .end(function(err, res) {
         should.not.exist(err);
         res.body.should.have.deep.members([{
-          id: "53ffcf1d4ea4f76d1b8f223e",
-          chinese: "因特网",
-          pronunciation: "yintewang",
-          english: "internet"
+          chinese: '因特网',
+          pronunciation: 'yintewang',
+          english: 'internet',
+          id: '53ffcf1d4ea4f76d1b8f223e'
         }, {
-          id: "53ffcf1d4ea4f76d1b8f223f",
-          chinese: "狮子狗",
-          pronunciation: "shizi gou",
-          english: "poodle"
+          chinese: '狮子狗',
+          pronunciation: 'shizi gou',
+          english: 'poodle',
+          id: '53ffcf1d4ea4f76d1b8f223f'
+        }, {
+          chinese: '谢谢。',
+          english: 'Thank you.',
+          pronunciation: 'Xièxiè.',
+          id: '53ffcf1d4ea4f76d1b8f2240'
+        }, {
+          chinese: '住手！小偷！',
+          english: 'Stop! Thief!',
+          pronunciation: 'zhùshǒu! xiǎotōu!',
+          id: '53ffcf1d4ea4f76d1b8f2241'
         }]);
         done();
       });
@@ -57,6 +77,27 @@ describe("lessons", function() {
           pronunciation: "shizi gou",
           english: "poodle"
         });
+        done();
+      });
+  });
+
+  it("gets limit lessons after skip", function(done) {
+    request(app)
+      .get("/v1/lessons?limit=2&skip=1")
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.body.should.have.deep.members([{
+          chinese: '狮子狗',
+          pronunciation: 'shizi gou',
+          english: 'poodle',
+          id: '53ffcf1d4ea4f76d1b8f223f'
+        }, {
+          chinese: '谢谢。',
+          english: 'Thank you.',
+          pronunciation: 'Xièxiè.',
+          id: '53ffcf1d4ea4f76d1b8f2240'
+        }]);
         done();
       });
   });
