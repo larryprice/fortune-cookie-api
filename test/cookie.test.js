@@ -22,6 +22,11 @@ describe("cookie", function() {
       chinese: "狮子狗",
       pronunciation: "shizi gou",
       english: "poodle"
+    }, {
+      _id: "53ffcf1d4ea4f76d1b8f2240",
+      chinese: "早安。",
+      pronunciation: "zǎo ān.",
+      english: "Good morning. "
     });
 
     Fortune.create({
