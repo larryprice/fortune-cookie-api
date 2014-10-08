@@ -44,9 +44,9 @@ describe("lottos", function() {
       });
   });
 
-  it("gets all the lottos with specified limit and starting point", function(done) {
+  it("gets all the lottos with specified limit and starting point and skip", function(done) {
     request(app)
-      .get("/v1/lottos?limit=3&firstId=005900590059005900590058")
+      .get("/v1/lottos?limit=4&start=005900590059005900590053&skip=5")
       .expect(200)
       .end(function(err, res) {
         should.not.exist(err);
@@ -59,6 +59,26 @@ describe("lottos", function() {
         }, {
           id: '000000000000000000000000',
           numbers: [0, 0, 0, 0, 0, 0]
+        }, {
+          id: '000000000000000000000001',
+          numbers: [0, 0, 0, 0, 0, 1]
+        }]);
+        done();
+      });
+  });
+
+  it("carries on skip and non-standard start", function(done) {
+    request(app)
+      .get("/v1/lottos?limit=2&start=005900590059005900530053&skip=8")
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.body.should.have.deep.members([{
+          id: '005900590059005900550000',
+          numbers: [59, 59, 59, 59, 55, 0]
+        }, {
+          id: '005900590059005900550001',
+          numbers: [59, 59, 59, 59, 55, 1]
         }]);
         done();
       });

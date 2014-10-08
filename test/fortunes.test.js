@@ -20,6 +20,9 @@ describe("fortunes", function() {
     }, {
       _id: '53ffcf1d4ea4f76d1b8f2240',
       message: 'Fortune 3'
+    }, {
+      _id: '53ffcf1d4ea4f76d1b8f2241',
+      message: 'Fortune 4'
     });
   });
 
@@ -33,6 +36,26 @@ describe("fortunes", function() {
           message: 'Fortune 1',
           id: '53ffcf1d4ea4f76d1b8f223e'
         }, {
+          message: 'Fortune 2',
+          id: '53ffcf1d4ea4f76d1b8f223f'
+        }, {
+          message: 'Fortune 3',
+          id: '53ffcf1d4ea4f76d1b8f2240'
+        }, {
+          id: '53ffcf1d4ea4f76d1b8f2241',
+          message: 'Fortune 4'
+        }]);
+        done();
+      });
+  });
+
+  it("gets limit fortunes with skip", function(done) {
+    request(app)
+      .get("/v1/fortunes?limit=2&skip=1")
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.body.should.have.deep.members([{
           message: 'Fortune 2',
           id: '53ffcf1d4ea4f76d1b8f223f'
         }, {
