@@ -65,22 +65,6 @@ describe("lessons", function() {
       });
   });
 
-  it("gets requested lesson", function(done) {
-    request(app)
-      .get("/v1/lessons/53ffcf1d4ea4f76d1b8f223f")
-      .expect(200)
-      .end(function(err, res) {
-        should.not.exist(err);
-        res.body.should.deep.equal({
-          id: '53ffcf1d4ea4f76d1b8f223f',
-          chinese: "狮子狗",
-          pronunciation: "shizi gou",
-          english: "poodle"
-        });
-        done();
-      });
-  });
-
   it("gets limit lessons after skip", function(done) {
     request(app)
       .get("/v1/lessons?limit=2&skip=1")
@@ -98,6 +82,49 @@ describe("lessons", function() {
           pronunciation: 'Xièxiè.',
           id: '53ffcf1d4ea4f76d1b8f2240'
         }]);
+        done();
+      });
+  });
+
+  it("gets the right page of lessons given limit and skip", function(done) {
+    request(app)
+      .get("/v1/lessons?limit=2&skip=1&page=2")
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.body.should.have.deep.members([{
+          chinese: '住手！小偷！',
+          english: 'Stop! Thief!',
+          pronunciation: 'zhùshǒu! xiǎotōu!',
+          id: '53ffcf1d4ea4f76d1b8f2241'
+        }]);
+        done();
+      });
+  });
+
+  it("returns empty when page out of range", function(done) {
+    request(app)
+      .get("/v1/lessons?limit=2&skip=1&page=3")
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.body.should.be.empty
+        done();
+      });
+  });
+
+  it("gets requested lesson", function(done) {
+    request(app)
+      .get("/v1/lessons/53ffcf1d4ea4f76d1b8f223f")
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.body.should.deep.equal({
+          id: '53ffcf1d4ea4f76d1b8f223f',
+          chinese: "狮子狗",
+          pronunciation: "shizi gou",
+          english: "poodle"
+        });
         done();
       });
   });
