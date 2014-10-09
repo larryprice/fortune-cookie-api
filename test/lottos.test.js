@@ -69,16 +69,16 @@ describe("lottos", function() {
 
   it("carries on skip and non-standard start", function(done) {
     request(app)
-      .get("/v1/lottos?limit=2&start=005900590059005900530053&skip=8")
+      .get("/v1/lottos?limit=2&start=005900590059005900530053&skip=10")
       .expect(200)
       .end(function(err, res) {
         should.not.exist(err);
         res.body.should.have.deep.members([{
-          id: '005900590059005900550000',
-          numbers: [59, 59, 59, 59, 55, 0]
+          id: '005900590059005900540003',
+          numbers: [59, 59, 59, 59, 54, 3]
         }, {
-          id: '005900590059005900550001',
-          numbers: [59, 59, 59, 59, 55, 1]
+          id: '005900590059005900540004',
+          numbers: [59, 59, 59, 59, 54, 4]
         }]);
         done();
       });
