@@ -9,18 +9,18 @@ describe("lottos", function() {
       .expect(200)
       .end(function(err, res) {
         should.not.exist(err);
-        res.body.should.have.length(1000);
+        res.body.should.have.length(100);
         res.body[0].should.deep.equal({
           id: '000000000000000000000000',
           numbers: [0, 0, 0, 0, 0, 0]
         });
-        res.body[500].should.deep.equal({
-          id: '000000000000000000080020',
-          numbers: [0, 0, 0, 0, 8, 20]
+        res.body[50].should.deep.equal({
+          id: '000000000000000000000050',
+          numbers: [0, 0, 0, 0, 0, 50]
         });
-        res.body[999].should.deep.equal({
-          id: '000000000000000000160039',
-          numbers: [0, 0, 0, 0, 16, 39]
+        res.body[99].should.deep.equal({
+          id: '000000000000000000010039',
+          numbers: [0, 0, 0, 0, 1, 39]
         });
         done();
       });
