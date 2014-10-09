@@ -66,6 +66,31 @@ describe("fortunes", function() {
       });
   });
 
+  it("gets the right page of fortunes given limit and skip", function(done) {
+    request(app)
+      .get("/v1/fortunes?limit=2&skip=1&page=2")
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.body.should.have.deep.members([{
+          id: '53ffcf1d4ea4f76d1b8f2241',
+          message: 'Fortune 4'
+        }]);
+        done();
+      });
+  });
+
+  it("returns empty when page out of range", function(done) {
+    request(app)
+      .get("/v1/fortunes?limit=2&skip=1&page=3")
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.body.should.be.empty
+        done();
+      });
+  });
+
   it("gets requested fortune", function(done) {
     request(app)
       .get("/v1/fortunes/53ffcf1d4ea4f76d1b8f223f")
