@@ -49,6 +49,23 @@ describe("lottos", function() {
       });
   });
 
+  it("gets lottos from the correct page", function(done) {
+    request(app)
+      .get("/v1/lottos?limit=2&page=10&skip=5")
+      .expect(200)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.body.should.have.deep.members([{
+          id: '000000000000000000000023',
+          numbers: [0, 0, 0, 0, 0, 23]
+        }, {
+          id: '000000000000000000000024',
+          numbers: [0, 0, 0, 0, 0, 24]
+        }]);
+        done();
+      });
+  });
+
   it("carries on skip and non-standard start", function(done) {
     request(app)
       .get("/v1/lottos?limit=2&start=005900590059005900530053&skip=10")
