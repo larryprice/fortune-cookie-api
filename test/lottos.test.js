@@ -3,43 +3,25 @@ var should = require('chai').should(),
   app = require('../web').app;
 
 describe("lottos", function() {
-  it("gets all the lottos with default limit", function(done) {
+  it("gets all the lottos with default limit of 1000", function(done) {
     request(app)
       .get("/v1/lottos")
       .expect(200)
       .end(function(err, res) {
         should.not.exist(err);
-        res.body.should.have.deep.members([{
+        res.body.should.have.length(1000);
+        res.body[0].should.deep.equal({
           id: '000000000000000000000000',
           numbers: [0, 0, 0, 0, 0, 0]
-        }, {
-          id: '000000000000000000000001',
-          numbers: [0, 0, 0, 0, 0, 1]
-        }, {
-          id: '000000000000000000000002',
-          numbers: [0, 0, 0, 0, 0, 2]
-        }, {
-          id: '000000000000000000000003',
-          numbers: [0, 0, 0, 0, 0, 3]
-        }, {
-          id: '000000000000000000000004',
-          numbers: [0, 0, 0, 0, 0, 4]
-        }, {
-          id: '000000000000000000000005',
-          numbers: [0, 0, 0, 0, 0, 5]
-        }, {
-          id: '000000000000000000000006',
-          numbers: [0, 0, 0, 0, 0, 6]
-        }, {
-          id: '000000000000000000000007',
-          numbers: [0, 0, 0, 0, 0, 7]
-        }, {
-          id: '000000000000000000000008',
-          numbers: [0, 0, 0, 0, 0, 8]
-        }, {
-          id: '000000000000000000000009',
-          numbers: [0, 0, 0, 0, 0, 9]
-        }]);
+        });
+        res.body[500].should.deep.equal({
+          id: '000000000000000000080020',
+          numbers: [0, 0, 0, 0, 8, 20]
+        });
+        res.body[999].should.deep.equal({
+          id: '000000000000000000160039',
+          numbers: [0, 0, 0, 0, 16, 39]
+        });
         done();
       });
   });
