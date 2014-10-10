@@ -4,8 +4,14 @@ HOST: http://fortunecookieapi.herokuapp.com
 # Fortune Cookie API
 Fortune Cookie API retrieves data to create a fortune cookie - fortunes, lotto numbers, and a brief lesson in Simplified Chinese.
 
-# Group Notes
-Notes related resources of the **Fortune Cookie API**
+## Authentication
+None currently.
+
+## Media Types
+JSON responses.
+
+## Error States
+The common [HTTP Response Status Codes](https://github.com/for-GET/know-your-http-well/blob/master/status-codes.md) are used.
 
 ## Fortunes Collection [/v1/fortunes{?limit,skip,page}]
 ### List all Fortunes [GET]
@@ -65,6 +71,7 @@ A single Lotto object with all its details
     + Body
 
             { "id": "001000200030004000500006", "numbers": [10,20,30,40,50,6] }
+
 
 ## Lessons Collection [/v1/lessons{?limit,skip,page}]
 ### List all Lessons [GET]
