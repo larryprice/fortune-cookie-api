@@ -26,6 +26,7 @@
   "homepage": "https://github.com/larryprice/fortune-cookie-api",
   "dependencies": {
     "express": "^4.8.1",
+    "jade": "^1.7.0",
     "mongoose": "^3.8.15",
     "mongoose-simple-random": "^0.3.0"
   },
