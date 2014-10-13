@@ -96,4 +96,26 @@ describe("lottos", function() {
         done();
       });
   });
+
+  it("errors with bad lotto id", function(done) {
+    request(app)
+      .get("/v1/lottos/123456")
+      .expect(400)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.text.should.equal("Bad id.");
+        done();
+      });
+  });
+
+  it("errors with bad starting id", function(done) {
+    request(app)
+      .get("/v1/lottos?start=123456")
+      .expect(400)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.text.should.equal("Bad id.");
+        done();
+      });
+  });
 });
