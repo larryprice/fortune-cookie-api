@@ -1,9 +1,9 @@
 var should = require('chai').should(),
   Lotto = require('../lib/models/lotto');
 
-describe("lotto", function() {
-  it("finds one by random", function(done) {
-    Lotto.findOneRandom(function(err, lotto) {
+describe("lotto", function () {
+  it("finds one by random", function (done) {
+    Lotto.findOneRandom(function (err, lotto) {
       should.not.exist(err);
       lotto.should.ownProperty('numbers');
       lotto.should.ownProperty('id');
@@ -11,8 +11,8 @@ describe("lotto", function() {
     });
   });
 
-  it("find by random returns 1 by default", function(done) {
-    Lotto.findRandom(function(err, lottos) {
+  it("find by random returns 1 by default", function (done) {
+    Lotto.findRandom(function (err, lottos) {
       should.not.exist(err);
       lottos.should.have.length(1);
       lottos[0].should.ownProperty('numbers');
@@ -21,10 +21,10 @@ describe("lotto", function() {
     });
   });
 
-  it("finds by random returns given count", function(done) {
+  it("finds by random returns given count", function (done) {
     Lotto.findRandom({}, {}, {
       limit: 3
-    }, function(err, lottos) {
+    }, function (err, lottos) {
       should.not.exist(err);
       lottos.should.have.length(3);
       for (var i = 0; i < lottos.length; ++i) {
@@ -35,8 +35,8 @@ describe("lotto", function() {
     });
   });
 
-  it("find by random deals with only two arguments", function(done) {
-    Lotto.findRandom({}, function(err, lottos) {
+  it("find by random deals with only two arguments", function (done) {
+    Lotto.findRandom({}, function (err, lottos) {
       should.not.exist(err);
       lottos.should.have.length(1);
       lottos[0].should.ownProperty('numbers');
@@ -45,8 +45,8 @@ describe("lotto", function() {
     });
   });
 
-  it("find by random deals with only three arguments", function(done) {
-    Lotto.findRandom({}, {}, function(err, lottos) {
+  it("find by random deals with only three arguments", function (done) {
+    Lotto.findRandom({}, {}, function (err, lottos) {
       should.not.exist(err);
       lottos.should.have.length(1);
       lottos[0].should.ownProperty('numbers');
@@ -55,9 +55,19 @@ describe("lotto", function() {
     });
   });
 
-  it("returns an error when id is invalid", function(done) {
-    Lotto.findById("spicy vampire", function(err, lotto) {
+  it("returns an error when id is invalid", function (done) {
+    Lotto.findById("spicy vampire", function (err, lotto) {
       should.not.exist(lotto);
+      err.should.eq("Bad id.");
+      done();
+    });
+  });
+
+  it("find many returns an error when start is invalid", function (done) {
+    Lotto.find({}, {}, {
+      start: "louie"
+    }, function (err, docs) {
+      should.not.exist(docs);
       err.should.eq("Bad id.");
       done();
     });
