@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://fortunecookieapi.com
+HOST: http://fortunecookieapi.herokuapp.com
 
 # Fortune Cookie API
 Fortune Cookie API retrieves data to create a fortune cookie - fortunes, lotto numbers, and a brief lesson in Simplified Chinese.
@@ -23,7 +23,7 @@ Fortunes are a key component to a fortune cookie. Fortunes contain a *message*, 
     + limit (integer,optional) ... Quantity of fortunes to return, default 100, max 1000
     + skip (integer,optional) ... Fortunes to skip before fetching, default 0
     + page (integer,optional) ... Page number taking into account given limit, default 1
-    
+
 + Response 200 (application/json)
 
         [{
@@ -55,7 +55,7 @@ A lesson in simplified Chinese. Gives the user a common word or phrase in Englis
     + limit (integer,optional) ... Quantity of lessons to return, default 100, max 1000
     + skip (integer, optional) ... Fortunes to skip before fetching, default 0
     + page (integer,optional) ... Page number taking into account given limit, default 1
-    
+
 + Response 200 (application/json)
 
         [{
